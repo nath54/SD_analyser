@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title>SD Analyser</title>
+    <link href="css/style.css" rel="stylesheet" />
+</head>
+
+<body>
+
+    <!-- Header -->
+    <div id="header" class="row">
+        <div id="bt_menu" onclick="menu_toggle();"></div>
+        <div class="wmax hmax">
+            <div class="row m15">
+
+                <div class="mauto">
+
+                </div>
+
+                <div class="row mauto center">
+                    <b>Test : </b>
+                    <span id="span_test">Animals</span>
+                </div>
+
+                <div class="row mauto center">
+                    <b>Model : </b>
+                    <span id="span_model">AnalogMadness</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="main_page">
+        <div class="col">
+
+            <!-- Imgs Div -->
+            <div id="imgs_div">
+
+                <div class="m15 row_wrap" id="imgs_blocks_container">
+
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Div Menu -->
+    <div id="div_menu" style="visibility: visible;">
+        <div class="m15 col">
+            <h2 class="m5 center">Models :</h2>
+            <div class="col m15" id="div_models"></div>
+            <h2 class="m5 center">Tests :</h2>
+            <div class="col m15" id="div_tests"></div>
+        </div>
+    </div>
+
+    <!-- Div Large Image -->
+    <div id="div_large_img" onclick="hide_large_img()" style="visibility:hidden;">
+        <div id="subdiv_large_img " class="center ">
+            <img id="large_img_viewer" class="large_img" src="res/example.png ">
+        </div>
+    </div>
+</body>
+
+</html>
+<script>
+    const model_list = {
+        "AnalogMadness": {
+            "tests": {
+                "animals": -1,
+                "people": -1,
+                "landscapes": -1
+            },
+            "note": -1
+        },
+        "DreamShaper": {
+            "tests": {
+                "animals": -1,
+                "people": -1,
+                "landscapes": -1
+            },
+            "note": -1
+        },
+        "FreedomRedmond": {
+            "tests": {
+                "animals": -1,
+                "people": -1,
+                "landscapes": -1
+            },
+            "note": -1
+        },
+        "GhostMix": {
+            "tests": {
+                "animals": -1,
+                "people": -1,
+                "landscapes": -1
+            },
+            "note": -1
+        }
+    };
+
+    //
+
+    const queryString = window.location.search;
+    const urlParams = new URLSearchParams(queryString);
+
+    var test_actif = "animals";
+    var model_actif = "AnalogMadness";
+
+    if (urlParams.has("test")) {
+        test_actif = urlParams.get("test");
+    }
+    if (urlParams.has("model")) {
+        model_actif = urlParams.get("model");
+    }
+
+    document.getElementById("span_model").innerText = model_actif;
+    document.getElementById("span_test").innerText = test_actif;
+
+    var script_elt = document.createElement("script");
+
+    script_elt.setAttribute("src", "js/" + model_actif + "_" + test_actif + ".js");
+    script_elt.type = "text/javascript";
+    document.body.appendChild(script_elt);
+
+    //
+
+    for (model of Object.keys(model_list)) {
+        var bt_model = document.createElement("button");
+        if (model_actif == model) {
+            bt_model.classList.add("bt1_actif");
+        } else {
+            bt_model.classList.add("bt1");
+        }
+        bt_model.classList.add("center");
+        bt_model.classList.add("m5");
+        bt_model.innerText = model;
+        bt_model.id = "bt_model_" + model;
+        bt_model.setAttribute("onclick", "update_model_bt('" + model + "');");
+        document.getElementById("div_models").appendChild(bt_model);
+    }
+
+    function load_test_buttons() {
+        // Clear
+        for (bt_test of document.getElementById("div_tests").children) {
+            document.getElementById("div_tests").removeChild(bt_test);
+        }
+        document.getElementById("div_tests").innerHTML = "";
+        // Load
+        for (test of Object.keys(model_list[model_actif]["tests"])) {
+            var bt_test = document.createElement("button");
+            if (test_actif == test) {
+                bt_test.classList.add("bt2_actif");
+            } else {
+                bt_test.classList.add("bt2");
+            }
+            bt_test.classList.add("center");
+            bt_test.classList.add("m5");
+            bt_test.innerText = test;
+            bt_test.id = "bt_test_" + test;
+            bt_test.setAttribute("onclick", "go_to_test('" + test + "')")
+            document.getElementById("div_tests").appendChild(bt_test);
+        }
+    }
+
+    function update_model_bt(model) {
+        var ancient_bt = document.getElementById("bt_model_" + model_actif);
+        ancient_bt.classList.remove("bt1_actif");
+        ancient_bt.classList.add("bt1");
+        //
+        var nouveau_bt = document.getElementById("bt_model_" + model);
+        nouveau_bt.classList.remove("bt1");
+        nouveau_bt.classList.add("bt1_actif");
+        //
+        model_actif = model;
+        test_actif = "";
+        load_test_buttons();
+    }
+
+    function go_to_test(test) {
+        var new_url = "index.html?model=" + model_actif + "&test=" + test;
+        window.location.href = new_url;
+    }
+
+    load_test_buttons();
+
+    var menu_open = true;
+
+    function hide_large_img() {
+        document.getElementById("div_large_img").style.visibility = "hidden";
+    }
+
+    function menu_toggle() {
+        var dm = document.getElementById("div_menu");
+        var tx = dm.clientWidth;
+        if (menu_open) {
+            dm.style.transform = "translateX(-" + tx + "px)";
+            menu_open = false;
+        } else {
+            dm.style.transform = "translateX(0px)";
+            menu_open = true;
+        }
+    }
+
+    function show_img(url) {
+        document.getElementById("large_img_viewer").src = url;
+        document.getElementById("div_large_img").style.visibility = "visible";
+    }
+
+    function add_imgs() {
+        for (i_nom of Object.keys(data)) {
+            var i_src = data[i_nom]["url"];
+            var i_note = data[i_nom]["note"];
+            //
+            var i_d1 = document.createElement("div");
+            i_d1.classList.add("elt_box");
+            var i_d2 = document.createElement("div");
+            i_d2.classList.add("col");
+            i_d2.classList.add("m5");
+            i_d1.appendChild(i_d2);
+            var i_d3 = document.createElement("div");
+            i_d3.classList.add("m5");
+            i_d2.appendChild(i_d3);
+            var img = document.createElement("img");
+            img.classList.add("small_img");
+            img.setAttribute("onclick", "show_img(\"" + i_src + "\");");
+            img.setAttribute("src", i_src);
+            i_d3.appendChild(img);
+            var i_d4 = document.createElement("div");
+            i_d4.classList.add("m5");
+            i_d4.classList.add("center");
+            i_d2.appendChild(i_d4);
+            var span = document.createElement("span");
+            span.innerText = i_nom;
+            i_d4.appendChild(span);
+            //
+            document.getElementById("imgs_blocks_container").appendChild(i_d1);
+        }
+    }
+</script>
