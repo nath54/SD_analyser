@@ -213,6 +213,7 @@
     function add_imgs() {
         for (i_nom of Object.keys(data)) {
             var i_src = data[i_nom]["url"];
+            var i_src_small = data[i_nom]["url_small"];
             var i_note = data[i_nom]["note"];
             //
             var i_d1 = document.createElement("div");
@@ -227,7 +228,7 @@
             var img = document.createElement("img");
             img.classList.add("small_img");
             img.setAttribute("onclick", "show_img(\"" + i_src + "\");");
-            img.setAttribute("src", i_src);
+            img.setAttribute("src", i_src_small);
             i_d3.appendChild(img);
             var i_d4 = document.createElement("div");
             i_d4.classList.add("m5");

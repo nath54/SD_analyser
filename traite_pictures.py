@@ -1,6 +1,8 @@
 import shutil
 import os
 import json
+from PIL import Image
+from tqdm import tqdm
 
 model = "DreamShaper"
 test = "animals"
@@ -45,7 +47,9 @@ for model in ["DreamShaper", "AnalogMadness", "GhostMix", "FreedomRedmond"]:
 
         lstdir = os.listdir(DOSSIER_INITIAL)
 
-        for f in lstdir:
+        print("First check...")
+
+        for f in tqdm(lstdir):
             if f.endswith(".txt") and f[:-4]+".png" in lstdir:
                 fi = open(DOSSIER_INITIAL+f, "r")
                 prompt = fi.readline()
@@ -72,9 +76,14 @@ for model in ["DreamShaper", "AnalogMadness", "GhostMix", "FreedomRedmond"]:
         dt_keys = list(data.keys())
         dt_keys.sort()
 
-        for e in dt_keys:
+        for e in tqdm(dt_keys):
             shutil.copy(data[e]["url"], f"C:/Users/Cerisara Nathan/Documents/GitHub/SD_analyser/res/pictures/{model}/{test}/{e}.png")
-            final_data[e] = {"url": f"res/pictures/{model}/{test}/{e}.png", "note": -1}
+            #
+            img = Image.open(f"C:/Users/Cerisara Nathan/Documents/GitHub/SD_analyser/res/pictures/{model}/{test}/{e}.png", "r")
+            im2 = img.resize((128, 128))
+            im2.save(f"res/pictures/{model}/{test}/{e}_small.png")
+            #
+            final_data[e] = {"url": f"res/pictures/{model}/{test}/{e}.png", "url_small":f"res/pictures/{model}/{test}/{e}_small.png", "note": -1}
 
         fi = open(f"js/{model}_{test}.js", "w")
         fi.write("const data="+json.dumps(final_data)+"; \n add_imgs();")
