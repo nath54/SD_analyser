@@ -4,7 +4,7 @@
 
 
 for WICH_PROMPT in ["realistic", "anime", "modern_art"]:
-    for TYPE in ["animals", "objects", "people", "paysages"]:
+    for TYPE in ["animals", "objects", "people", "landscapes"]:
         f = open(f"prompts/{TYPE}.txt", "r")
         elts = f.readlines()
         f.close()
@@ -38,7 +38,7 @@ for WICH_PROMPT in ["realistic", "anime", "modern_art"]:
                     prompt = f"Portrait picture of {aa}, {aa}, anime style, professional art, studio digital art, perfect composition, 8k, beautiful, intricate, details"
                 elif WICH_PROMPT == "modern_art":
                     prompt = f"Portrait Art of {aa}, {aa}, modern art style, professional modern art, studio digital art, perfect composition, 8k, beautiful, intricate, details, original, intense, masterpiece"
-            elif TYPE == "paysages":
+            elif TYPE == "landscapes":
                 if WICH_PROMPT == "realistic":
                     prompt = f"Picture of {aa} landscape, {aa} landscape environment, realistic, professional photography, perfect composition, 8k, beautiful, intricate, details"
                 elif WICH_PROMPT == "anime":
@@ -58,11 +58,11 @@ for WICH_PROMPT in ["realistic", "anime", "modern_art"]:
 ###########################################################################################################
 
 base_prompts_style_test = [
-    "a girl",
-    "a man",
-    "a cube shape",
-    "forest landscape",
-    "a planet"
+    "a beautiful young woman, 1girl, beautiful girl",
+    "a beautiful young man, 1man, beautiful man",
+    "a cat, cute cat animal",
+    "a cube shape, cube geometry, cubic",
+    "a forest landscape, landscape, forest, trees"
 ]
 
 f = open(f"prompts/styles_expressions.txt", "r")
@@ -71,7 +71,9 @@ f.close()
 
 stls = [s.strip().lower() for s in stls]
 
-lst = []
+lsts = {}
+for b in base_prompts_style_test:
+    lsts[b] = []
 
 for s in stls:
     for bp in base_prompts_style_test:
@@ -84,11 +86,13 @@ for s1 in stls:
         if s1 != s2:
             for bp in base_prompts_style_test:
                 prompt = bp+", "+s1+", "+s2
-                lst.append(prompt)
+                lsts[bp].append(prompt)
                 
 
-txt = "\n".join(lst)
+for k in lsts.keys():
 
-f = open(f"prompts/prompts_styles_test.txt", "w")
-f.write(txt)
-f.close()
+    txt = "\n".join(lsts[k])
+
+    f = open(f"prompts/prompts_styles_test_{k}.txt", "w")
+    f.write(txt)
+    f.close()

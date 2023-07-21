@@ -1,36 +1,18 @@
-photography
-anime style
-modern art
-3d render
-realistic
-perfect composition
-masterpiece
-intense
-colorful
-black and white
-cute
-zoomed
-wide angle
-soft
-smooth
-wonderful
-powerful
-vibrant colors
-flat colors
-thick outlines
-fluffy
-beautiful
-ugly
-attractive
-translucid
-humid
-details
-intricate
-bright
-epic
-epic lighting
-romantic
-dark
-gluant
-impressive
-floating in the sky
+((anime style))
+modern art, artistic
+3d render, 3d
+unreal engine render, 3d render
+realistic, real, photography
+((perfect composition))
+((masterpiece))
+((intense))
+((colorful))
+((wonderful))
+((vibrant colors))
+flat colors, 2d colors
+fluffy, fur
+bright, bright lighting
+epic, epic lighting
+((dark))
+mysterious, mystery
+intricate, detailed, ultra detailed
