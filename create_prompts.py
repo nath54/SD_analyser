@@ -4,7 +4,7 @@
 
 
 for WICH_PROMPT in ["realistic", "anime", "modern_art"]:
-    for TYPE in ["animals", "objects", "people", "landscapes"]:
+    for TYPE in ["animals", "objects1", "objects2", "people", "landscapes"]:
         f = open(f"prompts/{TYPE}.txt", "r")
         elts = f.readlines()
         f.close()
@@ -24,13 +24,13 @@ for WICH_PROMPT in ["realistic", "anime", "modern_art"]:
                     prompt = f"Picture of {aa} in its natural environment, {aa} animal, anime style, professional art, perfect composition, 8k, beautiful, intricate, details"
                 elif WICH_PROMPT == "modern_art":
                     prompt = f"Art of {aa} in its natural environment, {aa} animal, modern art style, professional modern art, perfect composition, 8k, beautiful, intricate, details, original, intense, masterpiece"
-            elif TYPE == "objects":
+            elif TYPE == "objects1" or TYPE == "objects2":
                 if WICH_PROMPT == "realistic":
-                    prompt = f"Picture of {aa}, {aa}, realistic, professional photography, perfect composition, 8k, beautiful, intricate, details"
+                    prompt = f"Picture of {aa.split(';')[0]}, {aa.replace(';', ',')}, realistic, professional photography, perfect composition, 8k, beautiful, intricate, details"
                 elif WICH_PROMPT == "anime":
-                    prompt = f"Picture of {aa}, {aa}, anime style, professional art, perfect composition, 8k, beautiful, intricate, details"
+                    prompt = f"Picture of {aa.split(';')[0]}, {aa.replace(';', ',')}, anime style, professional art, perfect composition, 8k, beautiful, intricate, details"
                 elif WICH_PROMPT == "modern_art":
-                    prompt = f"Art of {aa}, {aa}, modern art style, professional modern art, perfect composition, 8k, beautiful, intricate, details, original, intense, masterpiece"
+                    prompt = f"Art of {aa.split(';')[0]}, {aa.replace(';', ',')}, modern art style, professional modern art, perfect composition, 8k, beautiful, intricate, details, original, intense, masterpiece"
             elif TYPE == "people":
                 if WICH_PROMPT == "realistic":
                     prompt = f"Portrait photo of {aa}, {aa}, realistic, professional photography, studio shot, perfect composition, 8k, beautiful, intricate, details"

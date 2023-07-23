@@ -1,7 +1,9 @@
 html * {
-    background-color: rgb(26, 23, 10);
-    color: rgb(255, 228, 107);
-    font-size: large;
+    background-color: #1A120B;
+    color: #E5E5CB;
+    font-family: 'Merriweather', serif;
+    font-weight: 300;
+    font-size: x-large;
 }
 
 .row {
@@ -28,13 +30,17 @@ html * {
     margin: 5px;
 }
 
+.mauto {
+    margin: auto;
+}
+
 .small_img {
     width: 20ch;
     height: 20ch;
 }
 
 .elt_box {
-    border: 1px solid rgba(255, 228, 107, 0.3);
+    border: 1px solid #D5CEA3;
     margin: 15px;
     border-radius: 8px;
     -webkit-border-radius: 8px;
@@ -45,7 +51,7 @@ html * {
 
 .elt_box *,
 .elt_box {
-    background-color: rgb(32, 29, 15);
+    background-color: #3C2A21;
 }
 
 .center {
@@ -63,12 +69,12 @@ html * {
     left: 0;
     right: 0;
     height: 7ch;
-    background-color: rgb(49, 45, 27);
-    border-bottom: 1px solid rgb(255, 228, 107);
+    background-color: #3C2A21;
+    border-bottom: 1px solid #D5CEA3;
 }
 
 #header * {
-    background-color: rgb(49, 45, 27);
+    background-color: #3C2A21;
 }
 
 .hmax {
@@ -77,55 +83,6 @@ html * {
 
 .wmax {
     width: 100%;
-}
-
-#bt_menu {
-    margin: 1ch;
-    width: 5ch;
-    height: 5ch;
-    background-color: rgb(88, 74, 36);
-    background-image: url("../res/icon_menu.svg");
-    background-size: 100% 100%;
-    transform: rotate(0);
-    border-radius: 5px;
-    background-repeat: no-repeat;
-    transition: all 0.5s ease;
-    -webkit-transition: all 0.5s ease;
-    -moz-transition: all 0.5s ease;
-    -ms-transition: all 0.5s ease;
-    -o-transition: all 0.5s ease;
-    -webkit-border-radius: 5px;
-    -moz-border-radius: 5px;
-    -ms-border-radius: 5px;
-    -o-border-radius: 5px;
-    -webkit-transform: rotate(0);
-    -moz-transform: rotate(0);
-    -ms-transform: rotate(0);
-    -o-transform: rotate(0);
-}
-
-#bt_menu:hover {
-    margin: 0.85ch;
-    width: 5.3ch;
-    height: 5.3ch;
-    background-color: rgb(193, 151, 74);
-    transform: rotate(-10deg);
-    -webkit-transform: rotate(-10deg);
-    -moz-transform: rotate(-10deg);
-    -ms-transform: rotate(-10deg);
-    -o-transform: rotate(-10deg);
-}
-
-#bt_menu:active {
-    margin: 1.5ch;
-    width: 4ch;
-    height: 4ch;
-    background-color: rgb(82, 63, 11);
-    transform: rotate(5deg);
-    -webkit-transform: rotate(5deg);
-    -moz-transform: rotate(5deg);
-    -ms-transform: rotate(5deg);
-    -o-transform: rotate(5deg);
 }
 
 #div_large_img {
@@ -175,22 +132,8 @@ body {
 
 #main_page {
     overflow: auto;
-    margin-top: 8ch;
-}
-
-#div_menu {
-    position: fixed;
-    top: 7ch;
-    left: 0;
-    bottom: 0;
-    width: 40%;
-    border-top: 1px solid rgb(255, 228, 107);
-    border-right: 1px solid rgb(255, 129, 107);
-    transition: all 0.5s ease;
-    -webkit-transition: all 0.5s ease;
-    -moz-transition: all 0.5s ease;
-    -ms-transition: all 0.5s ease;
-    -o-transition: all 0.5s ease;
+    margin: 5ch;
+    margin-top: 10ch;
 }
 
 .bt1 {
@@ -319,4 +262,73 @@ body {
     color: rgb(107, 255, 191);
     border: 1px solid rgb(107, 255, 191);
     box-shadow: rgba(107, 255, 191, 0.2) 0px 0px 5px 3px;
+}
+
+.span1 {
+    color: rgb(176, 203, 232);
+    font-size: xx-large;
+    user-select: none;
+    margin: auto;
+    margin-bottom: 0px;
+}
+
+.span2 {
+    display: inline-block;
+    font-size: large;
+    user-select: none;
+    color: rgb(107, 255, 191);
+    width: 100%;
+    height: 100%;
+    margin: auto;
+    margin-right: 5px;
+    text-align: right;
+    margin-top: 0px;
+}
+
+#logo_header {
+    margin: 15px;
+}
+
+h1 {
+    color: #CCD5AE;
+    text-shadow: 5px 2px black, 2px 4px black, 3px 5px black;
+    font-size: xx-large;
+}
+
+h2 {
+    color: #E9EDC9;
+    text-shadow: 5px 2px black, 2px 4px black, 3px 5px black;
+    font-size: x-large;
+}
+
+h3 {
+    color: #E9EDC9;
+    font-size: larger;
+}
+
+a {
+    color: #FAEDCD;
+    cursor: pointer;
+    text-decoration: none;
+    transition: all ease 0.5s;
+    -webkit-transition: all ease 0.5s;
+    -moz-transition: all ease 0.5s;
+    -ms-transition: all ease 0.5s;
+    -o-transition: all ease 0.5s;
+}
+
+a:hover {
+    color: #FAEDCD;
+    text-shadow: rgba(255, 140, 255, 0.4) 1px 1px;
+}
+
+a:visited {
+    color: #CCD5AE;
+    text-decoration: none;
+}
+
+button,
+a,
+#logo_header {
+    cursor: pointer;
 }
