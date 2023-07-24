@@ -35,23 +35,38 @@ html * {
 }
 
 .small_img {
-    width: 20ch;
-    height: 20ch;
+    width: 128px;
+    height: 128px;
 }
 
 .elt_box {
     border: 1px solid #D5CEA3;
-    margin: 15px;
-    border-radius: 8px;
-    -webkit-border-radius: 8px;
-    -moz-border-radius: 8px;
-    -ms-border-radius: 8px;
-    -o-border-radius: 8px;
+    margin: 8px;
+    border-radius: 3px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    -ms-border-radius: 3px;
+    -o-border-radius: 3px;
 }
 
 .elt_box *,
 .elt_box {
     background-color: #3C2A21;
+}
+
+.large_box {
+    border: 1px solid #D5CEA3;
+    margin: 20px;
+    border-radius: 3px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    -ms-border-radius: 3px;
+    -o-border-radius: 3px;
+}
+
+.large_box *,
+.large_box {
+    background-color: #2D2424;
 }
 
 .center {
@@ -201,8 +216,10 @@ body {
 }
 
 .bt2 {
+    cursor: pointer;
+    user-select: none;
     margin: 5px;
-    padding: 7px;
+    padding: 4px;
     background: transparent;
     color: rgb(107, 179, 255);
     box-shadow: none;
@@ -217,6 +234,13 @@ body {
     -moz-transition: all 0.5s ease;
     -ms-transition: all 0.5s ease;
     -o-transition: all 0.5s ease;
+}
+
+.bt2 * {
+    cursor: pointer;
+    user-select: none;
+    background: transparent;
+    color: rgb(107, 179, 255);
 }
 
 .bt2:hover {
@@ -283,6 +307,16 @@ body {
     margin-right: 5px;
     text-align: right;
     margin-top: 0px;
+}
+
+.span3 {
+    display: inline-block;
+    font-size: small;
+    user-select: none;
+    color: #C4DFDF;
+    margin: auto;
+    margin-top: 5px;
+    text-align: center;
 }
 
 #logo_header {

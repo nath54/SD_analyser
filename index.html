@@ -10,6 +10,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Merriweather&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@300;400&display=swap" rel="stylesheet">
+    <script src="js/models.js" type="text/javascript"></script>
 </head>
 
 <body>
@@ -76,9 +77,9 @@
                         <li><b>Entities / Concepts</b></li>
                         <div class="m15 col">
                             <ul style="list-style-type:circle;">
-                                <li><b><a>Animals</a></b></li>
-                                <li><b><a>People</a></b></li>
-                                <li><b><a>Landscapes</a></b></li>
+                                <li><b><a href="concept_entity_test.html?test=animals">Animals</a></b></li>
+                                <li><b><a href="concept_entity_test.html?test=people">People</a></b></li>
+                                <li><b><a href="concept_entity_test.html?test=landscapes">Landscapes</a></b></li>
                             </ul>
                         </div>
                         <li><b><a>Style / Attributes</a></b></li>
@@ -100,3 +101,20 @@
 </body>
 
 </html>
+<script>
+    for (model of Object.keys(models)) {
+        var d = document.createElement("div");
+        d.classList.add("bt2");
+        d.setAttribute("onclick", "window.location.href='model_page.html?model=" + model + "';");
+        var dd = document.createElement("div");
+        dd.classList.add("row")
+        var span = document.createElement("span");
+        span.innerHTML = model;
+        var ddd = document.createElement("div");
+        //
+        dd.appendChild(span);
+        dd.appendChild(ddd);
+        d.appendChild(dd);
+        document.getElementById("models_general_review_list").appendChild(d);
+    }
+</script>

@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title>SD Analyser - Tests page</title>
+    <link href="css/style.css" rel="stylesheet" />
+    <!-- Google fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather&display=swap" rel="stylesheet">
+    <script src="js/models.js" type="text/javascript"></script>
+</head>
+
+<body>
+
+    <!-- Header -->
+    <div id="header" class="row">
+        <div onclick="window.location.href='index.html'" id="logo_header">
+            <div>
+                <span class="span1">SD Analyser</span>
+            </div>
+            <div>
+                <span class="span2">by nath54</span>
+            </div>
+        </div>
+
+        <div style="margin-left: auto; margin-right: auto;"></div>
+        <div class="row mauto" style="margin-right: 15px;">
+            <div>
+                <button onclick="window.location.href='tests.html'" class="bt1">Tests</button>
+            </div>
+
+            <div>
+                <button onclick="window.location.href='models.html'" class="bt1">Models</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Page -->
+    <div id="main_page">
+
+        <div style="width: 100%; height: 100%; margin: auto; padding: auto;">
+
+            <div>
+
+
+            </div>
+
+            <div class="center" style="width: 100%; height: 100%; margin: auto; padding: auto;">
+
+                <div class="row_wrap center" id="main_container" style="width: 100%; height: 100%; margin: auto; padding: auto;">
+
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- Div Large Image -->
+    <div id="div_large_img" onclick="hide_large_img()" style="visibility:hidden;">
+        <div id="subdiv_large_img " class="center ">
+            <img id="large_img_viewer" class="large_img" src="res/example.png ">
+        </div>
+    </div>
+
+
+</body>
+
+</html>
+<script>
+    const queryString = window.location.search;
+    const urlParams = new URLSearchParams(queryString);
+
+    var test = urlParams.get("test");
+
+    if (!(["animals", "landscapes", "people"].includes(test))) {
+        console.error("Error! This test doesn't exists!");
+    } else {
+
+        var imgs_exists = new Set();
+        var data_models = {};
+
+        for (model of Object.keys(models)) {
+            if (models[model]["tests"].includes(test)) {
+
+                var script_elt = document.createElement("script");
+
+                script_elt.setAttribute("src", "js/" + model + "_" + test + ".js");
+                script_elt.type = "text/javascript";
+                document.body.appendChild(script_elt);
+
+            }
+        }
+
+
+        function add_imgs(model_name) {
+            for (img_key of Object.keys(data_models[model_name])) {
+                var data_img = data_models[model_name][img_key];
+                if (!imgs_exists.has(img_key)) {
+                    imgs_exists.add(img_key);
+                    //
+                    var dk = document.createElement("div");
+                    dk.classList.add("large_box");
+                    dk.classList.add("col");
+                    var dt = document.createElement("div");
+                    dt.classList.add("m5");
+                    var t = document.createElement("h2");
+                    t.classList.add("center");
+                    t.innerText = img_key;
+                    var dr = document.createElement("div");
+                    dr.classList.add("row_wrap");
+                    dr.id = "div_row_" + img_key;
+                    //
+                    dt.appendChild(t);
+                    dk.appendChild(dt);
+                    dk.appendChild(dr);
+                    //
+                    document.getElementById("main_container").appendChild(dk);
+                }
+                //
+                var delt = document.createElement("div");
+                delt.classList.add("m5");
+                //delt.classList.add("elt_box");
+                var d = document.createElement("div");
+                d.classList.add("col");
+                var img = document.createElement("img");
+                img.classList.add("small_img");
+                img.setAttribute("src", data_img["url_small"]);
+                img.setAttribute("onclick", "show_img(\"" + data_img["url"] + "\");");
+                var spantext = document.createElement("span");
+                spantext.classList.add("span3");
+                spantext.innerText = model_name;
+                var div_score = document.createElement("div");
+                //
+                d.appendChild(img);
+                d.appendChild(spantext);
+                d.appendChild(div_score);
+                delt.appendChild(d);
+                document.getElementById("div_row_" + img_key).appendChild(delt);
+            }
+        }
+
+    }
+
+    function show_img(url) {
+        document.getElementById("large_img_viewer").src = url;
+        document.getElementById("div_large_img").style.visibility = "visible";
+    }
+
+
+    function hide_large_img() {
+        document.getElementById("div_large_img").style.visibility = "hidden";
+    }
+</script>
